@@ -399,8 +399,8 @@
     }
 
     var BOOKS = [
-      { t: "Six Sigma Green Belt", s: "Certification Training Manual", f: "Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", u: "/_blob/82c4d458a9182c20ab1636b28a30c19c", z: "PDF, 4.1 MB" },
-      { t: "Lean Six Sigma Black Belt", s: "Certification Training Manual", f: "Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", u: "/_blob/92f907a950ff6f0ba93bfa4c2f0c108a", z: "PDF, 6.8 MB" }
+      { t: "Six Sigma Green Belt", s: "Certification Training Manual", f: "Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", z: "PDF, 4.1 MB" },
+      { t: "Lean Six Sigma Black Belt", s: "Certification Training Manual", f: "Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", z: "PDF, 6.8 MB" }
     ];
 
     function bookshelf() {
@@ -437,19 +437,26 @@
         err.textContent = "";
         go.disabled = true;
 
-        var use = window.claude && claude.use ? claude.use("downloads") : Promise.resolve(null);
-        use.then(function(d) {
-          if (!d) throw { code: "none" };
-          return fetch(bk.u).then(function(r) {
+        fetch(bk.u)
+          .then(function(r) {
             if (!r.ok) throw { code: "fetch" };
             return r.blob();
-          }).then(function(blob) {
-            return d.save({ filename: bk.f, data: blob });
+          })
+          .then(function(blob) {
+            var a = document.createElement('a');
+            var url = URL.createObjectURL(blob);
+            a.href = url;
+            a.download = bk.f;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            close();
+          })
+          .catch(function(x) {
+            go.disabled = false;
+            err.textContent = x && x.code === "fetch" ? "The PDF could not be downloaded from the server. Please try again." : "The download could not start. Please try again.";
           });
-        }).then(close).catch(function(x) {
-          go.disabled = false;
-          err.textContent = x && x.code === "declined" ? "Download cancelled. Press Download to try again." : x && x.code === "none" ? "Downloads are not available in this view. Open the site in your browser or the Claude app." : "The download could not start. Please try again.";
-        });
       });
     }
 
