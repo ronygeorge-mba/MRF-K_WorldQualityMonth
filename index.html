@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>World Quality Month Celebrations, MRF-K</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1b1e20;
+      --paper: #e8eaeb;
+      --card: #ffffff;
+      --line: #c9cdcf;
+      --yel: #f5c400;
+      --mut: #555c60;
+      --dark: #1b1e20;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink:#eef0f1; --paper:#141617; --card:#202426; --line:#363b3e; --mut:#a2a9ad;
+      }
+    }
+    :root[data-theme="dark"] {
+      --ink:#eef0f1; --paper:#141617; --card:#202426; --line:#363b3e; --mut:#a2a9ad;
+    }
+    *, *:before, *:after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 17px/1.6 Barlow, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    h1, h2, h3 { font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; line-height: 1.05; margin: 0; }
+    a { color: inherit; }
+    .tread {
+      background-color: var(--dark);
+      background-image: repeating-linear-gradient(115deg, transparent 0 16px, rgba(245,196,0,.09) 16px 24px);
+    }
+    header.top {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 20;
+      color: #fff;
+      border-bottom: 3px solid var(--yel);
+    }
+    nav {
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      padding: 0 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    nav a {
+      color: #d8dcde;
+      text-decoration: none;
+      padding: 14px 14px;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 15px;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+    }
+    nav a:hover { color: #fff; }
+    nav a.on { color: var(--yel); border-bottom-color: var(--yel); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--yel); outline-offset: 2px; }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+    .hero {
+      color: #fff;
+      padding: 56px 28px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 7vw, 76px);
+      font-weight: 700;
+      max-width: none;
+      text-wrap: balance;
+    }
+    .hero p {
+      max-width: 52ch;
+      color: #d8dcde;
+      margin: 16px 0 22px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--yel);
+      color: #1b1e20;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 3px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .tile {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--yel);
+      padding: 18px;
+      border-radius: 4px;
+      color: inherit;
+      text-decoration: none;
+    }
+    .tile:hover { border-color: var(--ink); border-left-color: var(--yel); }
+    .tile h3 { font-size: 26px; margin-bottom: 4px; }
+    .tile p { margin: 0; color: var(--mut); font-size: 15px; }
+    .page-title {
+      font-size: clamp(34px, 6vw, 56px);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .lead { color: var(--mut); max-width: 62ch; margin: 0 0 22px; }
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 0 0 34px;
+    }
+    .flow span.s {
+      background: var(--dark);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .flow span.s b { color: var(--yel); }
+    .flow span.a { font-size: 24px; color: var(--mut); }
+    .era {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      margin-bottom: 26px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .era .rail {
+      color: #fff;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .era .yrs {
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1;
+      color: var(--yel);
+    }
+    .era .ico { width: 84px; height: 84px; }
+    .era .body { padding: 24px 26px; }
+    .era h2 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 10px; }
+    .focus {
+      background: rgba(245,196,0,.18);
+      border-left: 5px solid var(--yel);
+      padding: 12px 14px;
+      margin: 0 0 20px;
+      border-radius: 2px;
+    }
+    .focus b { display: block; }
+    .who { font-family: "Barlow Condensed", sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 10px; }
+    .leaders { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .lead-card { display: flex; gap: 14px; border: 1px solid var(--line); border-radius: 4px; padding: 14px; }
+    .av {
+      flex: none; width: 64px; height: 64px; border-radius: 50%;
+      background: var(--dark); color: var(--yel); display: grid; place-items: center;
+      font: 700 24px "Barlow Condensed", sans-serif; overflow: hidden; border: 3px solid var(--yel);
+    }
+    .av img { width: 100%; height: 100%; object-fit: cover; }
+    .lead-card h4 { margin: 0 0 2px; font-size: 17px; }
+    .lead-card p { margin: 0; font-size: 15px; color: var(--mut); line-height: 1.45; }
+    .shelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      align-items: start;
+      padding: 28px 22px 0;
+      border-bottom: 14px solid #7a5a35;
+      margin-bottom: 30px;
+      background: var(--card);
+      border-radius: 4px 4px 0 0;
+    }
+    .book { display: flex; flex-direction: column; gap: 10px; padding-bottom: 18px; }
+    .cover {
+      min-height: 260px;
+      border-left: 18px solid var(--yel);
+      border-radius: 3px 8px 8px 3px;
+      padding: 24px 22px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 6px;
+      box-shadow: 6px 6px 0 rgba(0,0,0,.18);
+    }
+    .cover h3 { font-size: 34px; font-weight: 700; }
+    .cover span { color: var(--yel); font-weight: 600; }
+    .book p { margin: 0; color: var(--mut); font-size: 15px; }
+    .dl, .go {
+      background: var(--yel); color: #1b1e20; border: 0; padding: 12px 18px;
+      font: 600 16px Barlow, system-ui, sans-serif; border-radius: 3px; cursor: pointer;
+    }
+    .dl:hover, .go:hover { filter: brightness(.93); }
+    .ghost {
+      background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 12px 18px;
+      font: 600 16px Barlow, system-ui, sans-serif; border-radius: 3px; cursor: pointer;
+    }
+    .tb { border-collapse: collapse; width: 100%; font-size: 15px; }
+    .tb th, .tb td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+    .tb th { background: var(--dark); color: #fff; }
+    .note {
+      background: var(--card); border: 1px solid var(--line); border-left: 8px solid var(--yel);
+      border-radius: 4px; padding: 22px 24px; margin: 0 0 34px;
+    }
+    .note h2 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 10px; }
+    .note p { margin: 0 0 12px; max-width: 68ch; }
+    .note a.go { display: inline-block; text-decoration: none; }
+    .sub { font-size: clamp(26px, 4vw, 36px); margin: 0 0 12px; }
+    .lbwrap { position: relative; }
+    .lbwrap:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='360'%20height='220'%3E%3Ctext%20x='20'%20y='130'%20transform='rotate(-24%20180%20110)'%20font-family='Arial,sans-serif'%20font-weight='700'%20font-size='30'%20fill='%23808080'%20fill-opacity='.2'%3ETRIAL%20DATA%3C/text%3E%3C/svg%3E");
+    }
+    .trial {
+      background: repeating-linear-gradient(-45deg, #f5c400 0 18px, #1b1e20 18px 36px);
+      padding: 7px; border-radius: 4px; margin: 0 0 24px;
+    }
+    .trial div { background: #1b1e20; color: #fff; padding: 16px 20px; border-radius: 2px; text-align: center; }
+    .trial b { display: block; color: #f5c400; font: 700 clamp(26px, 5vw, 46px)/1.05 "Barlow Condensed","Arial Narrow",sans-serif; }
+    .trial span { font-size: 15px; color: #d8dcde; }
+    .kpi h3 { font-size: 34px; }
+    .lbh { font-size: clamp(24px, 4vw, 32px); margin: 30px 0 12px; }
+    .tw { overflow-x: auto; margin-bottom: 6px; }
+    .tb td.n, .tb th.n { text-align: right; }
+    .bar {
+      display: inline-block; vertical-align: middle; width: 90px; height: 9px;
+      background: var(--line); border-radius: 5px; margin-right: 8px; overflow: hidden;
+    }
+    .bar i {
+      display: block; height: 100%; background: var(--yel);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.3);
+    }
+    .sh { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .lbn { color: var(--mut); font-size: 14px; margin: 8px 0 0; }
+    .ov {
+      position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; z-index: 50; padding: 16px;
+    }
+    .modal {
+      background: var(--card); color: var(--ink); width: 100%; max-width: 420px; padding: 24px; border-radius: 6px;
+      border-top: 6px solid var(--yel); display: flex; flex-direction: column; gap: 14px;
+    }
+    .modal h2 { font-size: 30px; }
+    .modal p { margin: 0; color: var(--mut); font-size: 15px; }
+    .modal label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 15px; }
+    .modal input {
+      font: 400 17px Barlow, system-ui, sans-serif; padding: 10px 12px; border: 1px solid var(--line);
+      border-radius: 3px; background: var(--paper); color: var(--ink);
+    }
+    .modal .row { display: flex; gap: 10px; justify-content: flex-end; }
+    .modal .err { color: #c0392b; min-height: 1.2em; }
+    .soon {
+      background: var(--card); border: 2px dashed var(--line); padding: 36px; border-radius: 4px; color: var(--mut);
+    }
+    .end { text-align: center; padding: 90px 20px; color: #fff; min-height: 70vh; }
+    .end h1 { font-size: clamp(40px, 8vw, 72px); color: var(--yel); }
+    footer { text-align: center; color: var(--mut); font-size: 14px; padding: 0 18px 30px; }
+    @media (max-width:760px) {
+      .era { grid-template-columns: 1fr; }
+      .era .rail { flex-direction: row; align-items: center; }
+      .era .ico { width: 60px; height: 60px; }
+      .era .yrs { font-size: 34px; }
+      .hero { padding: 40px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <header class="top tread">
+    <nav id="nav" aria-label="Main"></nav>
+  </header>
+  <main id="app"></main>
+  <footer>World Quality Month Celebrations</footer>
+
+  <script>
+    var TABS = [
+      ["home", "Home"],
+      ["history", "History of Quality"],
+      ["schedule", "Program Schedule"],
+      ["leaderboard", "Live Leaderboard"],
+      ["learning", "Learning & Development"],
+      ["bookshelf", "Bookshelf"],
+      ["games", "Games Corner"]
+    ];
+
+    var BLURB = {
+      history: "150 years of quality, from inspection to Quality 4.0.",
+      schedule: "What is happening on each day of the festival.",
+      leaderboard: "See who is leading, updated from the latest results.",
+      learning: "Training and learning material on quality.",
+      bookshelf: "Download the featured books as PDFs.",
+      games: "Quality quizzes and games to play."
+    };
+
+    var ICONS = {
+      1: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="34" r="20"/><path d="M49 49l18 18"/><path d="M25 34l7 7 12-14"/></svg>',
+      2: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 8l26 10v20c0 16-11 28-26 34C25 66 14 54 14 38V18z"/><path d="M28 40l9 9 16-18"/></svg>',
+      3: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="40" r="10"/><circle cx="40" cy="12" r="6"/><circle cx="40" cy="68" r="6"/><circle cx="12" cy="40" r="6"/><circle cx="68" cy="40" r="6"/><path d="M40 18v12M40 50v12M18 40h12M50 40h12"/></svg>',
+      4: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 62V46M26 62V34M42 62V42M58 62V22M10 18c14 8 24 0 32 6s20-2 28-12"/><circle cx="70" cy="12" r="3"/></svg>'
+    };
+
+    var ERAS = [
+      {
+        y: "Late 1800s – 1920s",
+        t: "Inspection and Scientific Management",
+        f: "Quality Control (Inspection)",
+        d: "Mass production created standardized, interchangeable parts, requiring dedicated inspectors to sort defective products at the end of the assembly line before they reached customers.",
+        l: [
+          ["Frederick Winslow Taylor", "Introduced Scientific Management, separating planning from execution and establishing formal inspection standards."],
+          ["Henry Ford", "Pioneered the moving assembly line, making dimensional consistency and standardized gauging essential."],
+          ["Walter A. Shewhart", "Invented the statistical Control Chart (1924) at Bell Labs, laying the mathematical groundwork to separate normal process noise from true defects."]
+        ]
+      },
+      {
+        y: "1940s – 1970s",
+        t: "Statistical Quality Control and the Japanese Quality Revolution",
+        f: "Quality Assurance (Prevention)",
+        d: "Quality shifted upstream from catching bad products to designing defect-free processes, powered by statistical sampling and frontline worker empowerment in post-war Japan.",
+        l: [
+          ["W. Edwards Deming", "Taught Japanese engineers systems thinking and the PDCA (Plan-Do-Check-Act) cycle for continuous process improvement."],
+          ["Joseph M. Juran", "Introduced the Quality Trilogy (Planning, Control, Improvement) and applied the Pareto Principle to isolate the “vital few” causes of defects."],
+          ["Kaoru Ishikawa", "Created the Fishbone (Cause-and-Effect) Diagram and launched Quality Circles, giving shop-floor operators direct ownership over problem-solving."]
+        ]
+      },
+      {
+        y: "1970s – 1990s",
+        t: "Total Quality Management (TQM) and the Birth of ISO 9001",
+        f: "Total Quality Management (System-Wide Improvement)",
+        d: "Quality evolved from an engineering function into an organization-wide culture driven by executive leadership, customer satisfaction, and global standards.",
+        l: [
+          ["Philip Crosby", "Popularized “Zero Defects” and Cost of Quality (“Quality is Free”), proving that prevention costs far less than rework."],
+          ["Armand Feigenbaum", "Defined Total Quality Control, establishing that every department, from procurement to sales, shares accountability for quality."],
+          ["Bill Smith (Motorola)", "Pioneered Six Sigma (1986), combining statistical rigor with business strategy to drive defects down to near-zero levels, alongside the launch of the ISO 9000 standards (1987)."]
+        ]
+      },
+      {
+        y: "2000s – Present",
+        t: "Process Focus, Continual Improvement, and Risk-Based Thinking",
+        f: "Proactive & Connected Excellence",
+        d: "Modern quality management integrates end-to-end process alignment, proactive risk mitigation (ISO 9001:2015), Lean efficiency, and real-time digital analytics (Quality 4.0).",
+        ll: "Key Leaders & Influencers",
+        l: [
+          ["Taiichi Ohno & Shigeo Shingo", "Toyota Production System. Though developed earlier, their Lean principles (poka-yoke error-proofing and waste elimination) merged with Six Sigma in the 2000s to become the modern global standard."],
+          ["Genichi Taguchi", "Advanced robust engineering and the Quality Loss Function, shaping modern design-for-reliability and risk-based thinking before a single unit is manufactured."]
+        ]
+      }
+    ];
+
+    var END = new Date(2026, 10, 25, 23, 59, 59);
+
+    function ini(n) {
+      return n.replace(/\(.*\)/, "").split(/ & | /).filter(function(w) { return /^[A-Z]/.test(w); }).slice(0, 2).map(function(w) { return w[0]; }).join("");
+    }
+
+    function history() {
+      var h = '<h1 class="page-title">Quality Management History: A 150-Year Timeline</h1><p class="lead">How making things right moved from catching mistakes at the end of the line to building quality into every part of the business.</p>';
+      h += '<div class="flow" aria-label="Core progression"><span class="s"><b>Quality Control</b> (Inspection)</span><span class="a">→</span><span class="s"><b>Quality Assurance</b> (Prevention)</span><span class="a">→</span><span class="s"><b>Total Quality Management</b> (System-Wide Improvement)</span></div>';
+      ERAS.forEach(function(e, i) {
+        h += '<section class="era"><div class="rail tread">' + ICONS[i + 1] + '<div class="yrs">' + e.y + '</div></div><div class="body"><h2>' + e.t + '</h2><p class="focus"><b>Era focus: ' + e.f + '</b>' + e.d + '</p><p class="who">' + (e.ll || "Key Leaders") + '</p><div class="leaders">';
+        e.l.forEach(function(p) {
+          h += '<div class="lead-card"><div class="av" data-name="' + p[0] + '">' + ini(p[0]) + '</div><div><h4>' + p[0] + '</h4><p>' + p[1] + '</p></div></div>';
+        });
+        h += '</div></div></section>';
+      });
+      return h;
+    }
+
+    function home() {
+      var h = '<section class="hero tread"><h1>World Quality Month Celebrations</h1><p>Ten days of learning, games and friendly competition around the one thing that keeps every tyre we make on the road.</p></section><div class="grid">';
+      TABS.slice(1).forEach(function(t) {
+        h += '<a class="tile" href="#' + t[0] + '"><h3>' + t[1] + '</h3><p>' + BLURB[t[0]] + '</p></a>';
+      });
+      return h + '</div>';
+    }
+
+    var BOOKS = [
+      { t: "Six Sigma Green Belt", s: "Certification Training Manual", f: "Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", u: "/_blob/82c4d458a9182c20ab1636b28a30c19c", z: "PDF, 4.1 MB" },
+      { t: "Lean Six Sigma Black Belt", s: "Certification Training Manual", f: "Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", u: "/_blob/92f907a950ff6f0ba93bfa4c2f0c108a", z: "PDF, 6.8 MB" }
+    ];
+
+    function bookshelf() {
+      var h = '<h1 class="page-title">Bookshelf</h1><p class="lead">Training manuals for everyone. Choose a book, enter your name and employee number, and the download starts.</p><div class="shelf">';
+      BOOKS.forEach(function(b, i) {
+        h += '<article class="book"><div class="cover tread"><span>' + b.s + '</span><h3>' + b.t + '</h3></div><p>' + b.z + '</p><button class="dl" data-i="' + i + '">Download PDF</button></article>';
+      });
+      return h + '</div>';
+    }
+
+    function openModal(i) {
+      var bk = BOOKS[i];
+      var m = document.createElement("div");
+      m.className = "ov";
+      m.innerHTML = '<form class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><h2 id="mt">Before you download</h2><p>' + bk.t + ' ' + bk.s + '</p><label>Your name<input name="n" required autocomplete="name"></label><label>Employee number<input name="e" required></label><p class="err" role="alert"></p><div class="row"><button type="button" class="ghost">Cancel</button><button type="submit" class="go">Download</button></div></form>';
+      document.body.appendChild(m);
+      var f = m.querySelector("form"), err = m.querySelector(".err"), go = m.querySelector(".go");
+      f.elements.n.focus();
+
+      function close() {
+        m.remove();
+        document.removeEventListener("keydown", esc);
+      }
+      function esc(e) { if (e.key === "Escape") close(); }
+      document.addEventListener("keydown", esc);
+      m.querySelector(".ghost").onclick = close;
+      m.addEventListener("click", function(e) { if (e.target === m) close(); });
+      f.addEventListener("submit", function(e) {
+        e.preventDefault();
+        if (!f.elements.n.value.trim() || !f.elements.e.value.trim()) {
+          err.textContent = "Enter both your name and employee number.";
+          return;
+        }
+        err.textContent = "";
+        go.disabled = true;
+
+        var use = window.claude && claude.use ? claude.use("downloads") : Promise.resolve(null);
+        use.then(function(d) {
+          if (!d) throw { code: "none" };
+          return fetch(bk.u).then(function(r) {
+            if (!r.ok) throw { code: "fetch" };
+            return r.blob();
+          }).then(function(blob) {
+            return d.save({ filename: bk.f, data: blob });
+          });
+        }).then(close).catch(function(x) {
+          go.disabled = false;
+          err.textContent = x && x.code === "declined" ? "Download cancelled. Press Download to try again." : x && x.code === "none" ? "Downloads are not available in this view. Open the site in your browser or the Claude app." : "The download could not start. Please try again.";
+        });
+      });
+    }
+
+    document.addEventListener("click", function(e) {
+      var b = e.target.closest && e.target.closest(".dl");
+      if (b) openModal(+b.dataset.i);
+    });
+
+    function escHtml(s) {
+      return String(s == null ? "" : s).replace(/[&<>\"']/g, function(c) {
+        return "&#" + c.charCodeAt(0) + ";";
+      });
+    }
+
+    var LB = {
+      upd: "12 November 2026",
+      total: 315,
+      ideas: 11,
+      entries: 28,
+      plants: [
+        { r: 4, n: "Plant-1", t: 75, q: 10, v: 5, l: 40, e: 10, x: 10, en: 7, u: 3 },
+        { r: 1, n: "Plant-2", t: 80, q: 5, v: 5, l: 40, e: 20, x: 10, en: 7, u: 3 },
+        { r: 1, n: "Plant-3", t: 80, q: 5, v: 5, l: 40, e: 20, x: 10, en: 7, u: 3 },
+        { r: 1, n: "Plant-4", t: 80, q: 5, v: 5, l: 40, e: 10, x: 20, en: 7, u: 3 }
+      ],
+      emps: [
+        { r: 1, id: "E102", n: "Ananya Sharma", p: "Plant-2", a: 3, t: 40 },
+        { r: 2, id: "E101", n: "Rajesh Kumar", p: "Plant-1", a: 3, t: 35 },
+        { r: 2, id: "E103", n: "Vikram Singh", p: "Plant-3", a: 3, t: 35 },
+        { r: 2, id: "E108", n: "Amit Joshi", p: "Plant-4", a: 3, t: 35 },
+        { r: 5, id: "E107", n: "Kavita Menon", p: "Plant-3", a: 2, t: 30 },
+        { r: 5, id: "E112", n: "Pooja Gupta", p: "Plant-4", a: 2, t: 30 },
+        { r: 7, id: "E105", n: "Suresh Patel", p: "Plant-1", a: 2, t: 25 },
+        { r: 7, id: "E110", n: "Sneha Kulkarni", p: "Plant-2", a: 2, t: 25 },
+        { r: 9, id: "E104", n: "Priya Nair", p: "Plant-4", a: 2, t: 15 },
+        { r: 9, id: "E106", n: "Deepak Verma", p: "Plant-2", a: 2, t: 15 },
+        { r: 9, id: "E109", n: "Manoj Das", p: "Plant-1", a: 2, t: 15 },
+        { r: 9, id: "E111", n: "Rahul Reddy", p: "Plant-3", a: 2, t: 15 }
+      ],
+      shifts: [
+        { n: "Shift A", t: 140, en: 12 },
+        { n: "Shift B", t: 115, en: 10 },
+        { n: "Shift C", t: 60, en: 6 }
+      ]
+    };
+
+    function leaderboard() {
+      var L = LB;
+      function nm(x) { return x.n; }
+      var mx = Math.max.apply(null, L.plants.map(function(p) { return p.t; }));
+      var ps = L.plants.slice().sort(function(a, b) { return b.t - a.t || (a.n < b.n ? -1 : 1); });
+      var es = L.emps.slice().sort(function(a, b) { return b.t - a.t || (a.n < b.n ? -1 : 1); });
+      var lp = ps.filter(function(p) { return p.r == 1; });
+      var st = es.filter(function(p) { return p.r == 1; });
+
+      var h = '<div class="lbwrap"><h1 class="page-title">Live Leaderboard</h1><p class="lead">Marks earned by plants and employees during World Quality Month. Last updated ' + escHtml(L.upd) + '.</p>';
+      h += '<div class="trial" role="note"><div><b>This is for trial purposes only</b><span>The names and numbers on this page are sample data. They are not real results.</span></div></div>';
+      h += '<div class="grid">';
+      [[L.total, "Total marks awarded"],[lp.map(function(p) { return p.n; }).join(", ") + " (" + lp[0].t + " pts" + (lp.length > 1 ? ", tied" : "") + ")", "Leading plant"],[st.map(nm).join(", ") + " (" + st[0].t + " pts)", "Star performer"],[L.ideas, "Ideas submitted (poka-yoke / near escape)"],[L.entries + " entries", "Total participations"]].forEach(function(k) {
+        h += '<div class="tile kpi"><h3>' + escHtml(k[0]) + '</h3><p>' + escHtml(k[1]) + '</p></div>';
+      });
+
+      h += '</div><h2 class="lbh">Plant and area performance</h2><div class="tw"><table class="tb"><tr><th>Rank</th><th>Plant / Area</th><th>Total marks</th><th class="n">Quiz (5)</th><th class="n">Video (5)</th><th class="n">Learning (20)</th><th class="n">Error proof (10)</th><th class="n">Near escape (10)</th><th class="n">Entries</th><th class="n">Unique staff</th></tr>';
+      ps.forEach(function(p) {
+        h += '<tr><td>' + p.r + '</td><td>' + escHtml(p.n) + '</td><td><span class="bar"><i style="width:' + Math.round(p.t / mx * 100) + '%"></i></span><b>' + p.t + '</b></td><td class="n">' + p.q + '</td><td class="n">' + p.v + '</td><td class="n">' + p.l + '</td><td class="n">' + p.e + '</td><td class="n">' + p.x + '</td><td class="n">' + p.en + '</td><td class="n">' + p.u + '</td></tr>';
+      });
+
+      h += '</table></div><h2 class="lbh">Top individual performers</h2><div class="tw"><table class="tb"><tr><th>Rank</th><th>Emp #</th><th>Name</th><th>Plant</th><th class="n">Activities</th><th class="n">Total marks</th></tr>';
+      es.forEach(function(p) {
+        h += '<tr><td>' + p.r + '</td><td>' + escHtml(p.id) + '</td><td>' + escHtml(p.n) + '</td><td>' + escHtml(p.p) + '</td><td class="n">' + p.a + '</td><td class="n"><b>' + p.t + '</b></td></tr>';
+      });
+
+      var sm = Math.max.apply(null, L.shifts.map(function(s) { return s.t; }));
+      h += '</table></div><h2 class="lbh">Shift-wise comparison</h2><div class="sh">';
+      L.shifts.forEach(function(s) {
+        h += '<div class="tile kpi"><h3>' + s.t + '</h3><p>' + escHtml(s.n) + ', ' + s.en + ' entries</p><p><span class="bar" style="width:100%;margin:8px 0 0"><i style="width:' + Math.round(s.t / sm * 100) + '%"></i></span></p></div>';
+      });
+      return h + '</div><p class="lbn">Ties share the same rank.</p></div>';
+    }
+
+    var COURSES = [
+      ["Data Strategy", "https://365datascience.com/courses/data-strategy/", "365 Data Science. With Bernard Marr: how to align business and data strategy. About 6 hours."],
+      ["Data Literacy", "https://365datascience.com/courses/data-literacy/", "365 Data Science. Build the skills to read, understand and use data."],
+      ["Statistics", "https://365datascience.com/courses/statistics/", "365 Data Science. Core statistics for working with data."],
+      ["Introduction to Python", "https://365datascience.com/courses/introduction-to-python/", "365 Data Science. A beginner-friendly start to Python."],
+      ["Six Sigma Yellow Belt", "https://www.6sigmastudy.com/certification/six_sigma_yellow_belt", "6sigmastudy. Free online course and exam. Pass the 40-question exam to earn the Yellow Belt certification."]
+    ];
+
+    function learning() {
+      var open = new Date() < Date.UTC(2026, 10, 20, 15, 0, 0);
+      return '<h1 class="page-title">Learning &amp; Development</h1><p class="lead">Keep learning during World Quality Month.</p><section class="note"><h2>' + (open ? 'Learn for free on 365 Data Science' : 'The free access period has ended') + '</h2>' + (open ? '<p>All courses on 365 Data Science are free until <b>20 November 2026</b> (3:00 pm UTC, 8:30 pm IST). Log in or sign up and learn for free.</p><p><b>Share your course completion certificate with us to win exciting prizes!</b></p><p><a class="go" href="https://365datascience.com/trending/365-data-science-free-courses/" target="_blank" rel="noopener">Go to the free courses</a></p>' : '<p>The free access on 365 Data Science ended on 20 November 2026.</p>') + '</section><h2 class="sub">Top five courses strongly recommended by us</h2><div class="grid">' + COURSES.map(function(c) {
+        return '<a class="tile" href="' + c[1] + '" target="_blank" rel="noopener"><h3>' + c[0] + '</h3><p>' + c[2] + '</p></a>';
+      }).join("") + '</div>';
+    }
+
+    function soon(k) {
+      var t = TABS.filter(function(x) { return x[0] == k; })[0][1];
+      return '<h1 class="page-title">' + t + '</h1><div class="soon">This section is being prepared. Check back soon.</div>';
+    }
+
+    function render() {
+      var k = (location.hash || "#home").slice(1);
+      if (!TABS.some(function(t) { return t[0] == k; })) k = "home";
+      if (new Date() > END) {
+        document.getElementById("nav").style.display = "none";
+        document.getElementById("app").innerHTML = '<section class="end tread"><h1>The celebrations have ended</h1><p>Thank you to everyone who joined World Quality Month. See you next year.</p></section>';
+        return;
+      }
+      document.getElementById("nav").innerHTML = TABS.map(function(t) {
+        return '<a href="#' + t[0] + '"' + (t[0] == k ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>';
+      }).join("");
+      document.getElementById("app").innerHTML = k == "home" ? home() : k == "history" ? history() : k == "bookshelf" ? bookshelf() : k == "leaderboard" ? leaderboard() : k == "learning" ? learning() : soon(k);
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener("hashchange", render);
+    render();
+  </script>
+</body>
+</html>
