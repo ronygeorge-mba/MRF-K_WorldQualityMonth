@@ -228,15 +228,6 @@
     .note p { margin: 0 0 12px; max-width: 68ch; }
     .note a.go { display: inline-block; text-decoration: none; }
     .sub { font-size: clamp(26px, 4vw, 36px); margin: 0 0 12px; }
-    .lbwrap { position: relative; }
-    .lbwrap:after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='360'%20height='220'%3E%3Ctext%20x='20'%20y='130'%20transform='rotate(-24%20180%20110)'%20font-family='Arial,sans-serif'%20font-weight='700'%20font-size='30'%20fill='%23808080'%20fill-opacity='.2'%3ETRIAL%20DATA%3C/text%3E%3C/svg%3E");
-    }
     .trial {
       background: repeating-linear-gradient(-45deg, #f5c400 0 18px, #1b1e20 18px 36px);
       padding: 7px; border-radius: 4px; margin: 0 0 24px;
@@ -244,20 +235,7 @@
     .trial div { background: #1b1e20; color: #fff; padding: 16px 20px; border-radius: 2px; text-align: center; }
     .trial b { display: block; color: #f5c400; font: 700 clamp(26px, 5vw, 46px)/1.05 "Barlow Condensed","Arial Narrow",sans-serif; }
     .trial span { font-size: 15px; color: #d8dcde; }
-    .kpi h3 { font-size: 34px; }
-    .lbh { font-size: clamp(24px, 4vw, 32px); margin: 30px 0 12px; }
-    .tw { overflow-x: auto; margin-bottom: 6px; }
-    .tb td.n, .tb th.n { text-align: right; }
-    .bar {
-      display: inline-block; vertical-align: middle; width: 90px; height: 9px;
-      background: var(--line); border-radius: 5px; margin-right: 8px; overflow: hidden;
-    }
-    .bar i {
-      display: block; height: 100%; background: var(--yel);
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,.3);
-    }
     .sh { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-    .lbn { color: var(--mut); font-size: 14px; margin: 8px 0 0; }
     .ov {
       position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; z-index: 50; padding: 16px;
     }
@@ -302,7 +280,6 @@
       ["home", "Home"],
       ["history", "History of Quality"],
       ["schedule", "Program Schedule"],
-      ["leaderboard", "Live Leaderboard"],
       ["learning", "Learning & Development"],
       ["bookshelf", "Bookshelf"],
       ["games", "Games Corner"]
@@ -311,17 +288,16 @@
     var BLURB = {
       history: "150 years of quality, from inspection to Quality 4.0.",
       schedule: "What is happening on each day of the festival.",
-      leaderboard: "See who is leading, updated from the latest results.",
       learning: "Training and learning material on quality.",
       bookshelf: "Download the featured books as PDFs.",
       games: "Quality quizzes and games to play."
     };
 
     var ICONS = {
-      1: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="34" r="20"/><path d="M49 49l18 18"/><path d="M25 34l7 7 12-14"/></svg>',
-      2: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 8l26 10v20c0 16-11 28-26 34C25 66 14 54 14 38V18z"/><path d="M28 40l9 9 16-18"/></svg>',
-      3: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="40" r="10"/><circle cx="40" cy="12" r="6"/><circle cx="40" cy="68" r="6"/><circle cx="12" cy="40" r="6"/><circle cx="68" cy="40" r="6"/><path d="M40 18v12M40 50v12M18 40h12M50 40h12"/></svg>',
-      4: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 62V46M26 62V34M42 62V42M58 62V22M10 18c14 8 24 0 32 6s20-2 28-12"/><circle cx="70" cy="12" r="3"/></svg>'
+      1: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="34" r="20"/><path d="M49 49l18 18"/><path d="M26 35h16M34 27v16"/></svg>',
+      2: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 8l26 10v20c0 16-11 28-26 34C25 66 14 54 14 38V18l26-10z"/><path d="M40 20v28M28 32h24M28 44h24"/></svg>',
+      3: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="40" r="10"/><circle cx="40" cy="12" r="5"/><circle cx="40" cy="68" r="5"/><circle cx="12" cy="40" r="5"/><circle cx="68" cy="40" r="5"/><path d="M40 17v13M40 50v13M17 40h13M50 40h13"/></svg>',
+      4: '<svg class="ico" viewBox="0 0 80 80" fill="none" stroke="#f5c400" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 62V46M26 62V34M42 62V42M58 62V22M10 18c14 0 23-8 38-8h22"/></svg>'
     };
 
     var ERAS = [
@@ -355,7 +331,7 @@
         l: [
           ["Philip Crosby", "Popularized “Zero Defects” and Cost of Quality (“Quality is Free”), proving that prevention costs far less than rework."],
           ["Armand Feigenbaum", "Defined Total Quality Control, establishing that every department, from procurement to sales, shares accountability for quality."],
-          ["Bill Smith (Motorola)", "Pioneered Six Sigma (1986), combining statistical rigor with business strategy to drive defects down to near-zero levels, alongside the launch of the ISO 9000 standards (1987)."]
+          ["Bill Smith (Motorola)", "Pioneered Six Sigma (1986), combining statistical rigor with business strategy to drive defects down to near-zero levels."]
         ]
       },
       {
@@ -363,10 +339,9 @@
         t: "Process Focus, Continual Improvement, and Risk-Based Thinking",
         f: "Proactive & Connected Excellence",
         d: "Modern quality management integrates end-to-end process alignment, proactive risk mitigation (ISO 9001:2015), Lean efficiency, and real-time digital analytics (Quality 4.0).",
-        ll: "Key Leaders & Influencers",
         l: [
-          ["Taiichi Ohno & Shigeo Shingo", "Toyota Production System. Though developed earlier, their Lean principles (poka-yoke error-proofing and waste elimination) merged with Six Sigma in the 2000s to become the modern global standard."],
-          ["Genichi Taguchi", "Advanced robust engineering and the Quality Loss Function, shaping modern design-for-reliability and risk-based thinking before a single unit is manufactured."]
+          ["Taiichi Ohno & Shigeo Shingo", "Toyota Production System principles, including poka-yoke error-proofing and waste elimination."],
+          ["Genichi Taguchi", "Advanced robust engineering and the Quality Loss Function, shaping modern design-for-reliability and risk-based thinking."]
         ]
       }
     ];
@@ -378,10 +353,10 @@
     }
 
     function history() {
-      var h = '<h1 class="page-title">Quality Management History: A 150-Year Timeline</h1><p class="lead">How making things right moved from catching mistakes at the end of the line to building quality into every part of the business.</p>';
-      h += '<div class="flow" aria-label="Core progression"><span class="s"><b>Quality Control</b> (Inspection)</span><span class="a">→</span><span class="s"><b>Quality Assurance</b> (Prevention)</span><span class="a">→</span><span class="s"><b>Total Quality Management</b> (System-Wide Improvement)</span></div>';
+      var h = '<h1 class="page-title">Quality Management History: A 150-Year Timeline</h1><p class="lead">How making things right moved from catching mistakes at the end of the line to building quality into every process.</p>';
+      h += '<div class="flow" aria-label="Core progression"><span class="s"><b>Quality Control</b> (Inspection)</span><span class="a">→</span><span class="s"><b>Quality Assurance</b> (Prevention)</span><span class="a">→</span><span class="s"><b>TQM</b> (Organization-wide)</span><span class="a">→</span><span class="s"><b>Quality 4.0</b> (Digital &amp; Connected)</span></div>';
       ERAS.forEach(function(e, i) {
-        h += '<section class="era"><div class="rail tread">' + ICONS[i + 1] + '<div class="yrs">' + e.y + '</div></div><div class="body"><h2>' + e.t + '</h2><p class="focus"><b>Era focus: ' + e.f + '</b>' + e.d + '</p><p class="who">' + (e.ll || "Key Leaders") + '</p><div class="leaders">';
+        h += '<section class="era"><div class="rail tread">' + ICONS[i + 1] + '<div class="yrs">' + e.y + '</div></div><div class="body"><h2>' + e.t + '</h2><p class="focus"><b>Era focus: ' + e.f + '</b>' + e.d + '</p><p class="who">Key Leaders &amp; Influencers</p><div class="leaders">';
         e.l.forEach(function(p) {
           h += '<div class="lead-card"><div class="av" data-name="' + p[0] + '">' + ini(p[0]) + '</div><div><h4>' + p[0] + '</h4><p>' + p[1] + '</p></div></div>';
         });
@@ -391,7 +366,7 @@
     }
 
     function home() {
-      var h = '<section class="hero tread"><h1>World Quality Month Celebrations</h1><p>Ten days of learning, games and friendly competition around the one thing that keeps every tyre we make on the road.</p></section><div class="grid">';
+      var h = '<section class="hero tread"><h1>World Quality Month Celebrations</h1><p>Ten days of learning, games and friendly competition around the one thing that keeps every tyre we make on track: quality.</p><span class="badge">Celebrating Quality — November 2026</span></section><div class="grid">';
       TABS.slice(1).forEach(function(t) {
         h += '<a class="tile" href="#' + t[0] + '"><h3>' + t[1] + '</h3><p>' + BLURB[t[0]] + '</p></a>';
       });
@@ -399,8 +374,8 @@
     }
 
     var BOOKS = [
-      { t: "Six Sigma Green Belt", s: "Certification Training Manual", f: "Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", z: "PDF, 4.1 MB" },
-      { t: "Lean Six Sigma Black Belt", s: "Certification Training Manual", f: "Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", z: "PDF, 6.8 MB" }
+      { t: "Six Sigma Green Belt", s: "Certification Training Manual", f: "Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Six-Sigma-Green-Belt-Certification-Training-Manual.pdf", z: "Practical Lean Six Sigma tools and the DMAIC method for Green Belt projects." },
+      { t: "Lean Six Sigma Black Belt", s: "Certification Training Manual", f: "Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", u: "https://raw.githubusercontent.com/ronygeorge-mba/MRF-K_WorldQualityMonth/main/Lean-Six-Sigma-Black-Belt-Certification-Training-Manual.pdf", z: "Advanced process improvement, statistical analysis and leadership tools for Black Belt projects." }
     ];
 
     function bookshelf() {
@@ -415,7 +390,7 @@
       var bk = BOOKS[i];
       var m = document.createElement("div");
       m.className = "ov";
-      m.innerHTML = '<form class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><h2 id="mt">Before you download</h2><p>' + bk.t + ' ' + bk.s + '</p><label>Your name<input name="n" required autocomplete="name"></label><label>Employee number<input name="e" required></label><p class="err" role="alert"></p><div class="row"><button type="button" class="ghost">Cancel</button><button type="submit" class="go">Download</button></div></form>';
+      m.innerHTML = '<form class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><h2 id="mt">Before you download</h2><p>' + bk.t + ' ' + bk.s + '</p><label>Your name<input name="n" required></label><label>Employee number<input name="e" required></label><div class="err"></div><div class="row"><button type="button" class="ghost">Cancel</button><button type="submit" class="go">Download</button></div></form>';
       document.body.appendChild(m);
       var f = m.querySelector("form"), err = m.querySelector(".err"), go = m.querySelector(".go");
       f.elements.n.focus();
@@ -465,89 +440,17 @@
       if (b) openModal(+b.dataset.i);
     });
 
-    function escHtml(s) {
-      return String(s == null ? "" : s).replace(/[&<>\"']/g, function(c) {
-        return "&#" + c.charCodeAt(0) + ";";
-      });
-    }
-
-    var LB = {
-      upd: "12 November 2026",
-      total: 315,
-      ideas: 11,
-      entries: 28,
-      plants: [
-        { r: 4, n: "Plant-1", t: 75, q: 10, v: 5, l: 40, e: 10, x: 10, en: 7, u: 3 },
-        { r: 1, n: "Plant-2", t: 80, q: 5, v: 5, l: 40, e: 20, x: 10, en: 7, u: 3 },
-        { r: 1, n: "Plant-3", t: 80, q: 5, v: 5, l: 40, e: 20, x: 10, en: 7, u: 3 },
-        { r: 1, n: "Plant-4", t: 80, q: 5, v: 5, l: 40, e: 10, x: 20, en: 7, u: 3 }
-      ],
-      emps: [
-        { r: 1, id: "E102", n: "Ananya Sharma", p: "Plant-2", a: 3, t: 40 },
-        { r: 2, id: "E101", n: "Rajesh Kumar", p: "Plant-1", a: 3, t: 35 },
-        { r: 2, id: "E103", n: "Vikram Singh", p: "Plant-3", a: 3, t: 35 },
-        { r: 2, id: "E108", n: "Amit Joshi", p: "Plant-4", a: 3, t: 35 },
-        { r: 5, id: "E107", n: "Kavita Menon", p: "Plant-3", a: 2, t: 30 },
-        { r: 5, id: "E112", n: "Pooja Gupta", p: "Plant-4", a: 2, t: 30 },
-        { r: 7, id: "E105", n: "Suresh Patel", p: "Plant-1", a: 2, t: 25 },
-        { r: 7, id: "E110", n: "Sneha Kulkarni", p: "Plant-2", a: 2, t: 25 },
-        { r: 9, id: "E104", n: "Priya Nair", p: "Plant-4", a: 2, t: 15 },
-        { r: 9, id: "E106", n: "Deepak Verma", p: "Plant-2", a: 2, t: 15 },
-        { r: 9, id: "E109", n: "Manoj Das", p: "Plant-1", a: 2, t: 15 },
-        { r: 9, id: "E111", n: "Rahul Reddy", p: "Plant-3", a: 2, t: 15 }
-      ],
-      shifts: [
-        { n: "Shift A", t: 140, en: 12 },
-        { n: "Shift B", t: 115, en: 10 },
-        { n: "Shift C", t: 60, en: 6 }
-      ]
-    };
-
-    function leaderboard() {
-      var L = LB;
-      function nm(x) { return x.n; }
-      var mx = Math.max.apply(null, L.plants.map(function(p) { return p.t; }));
-      var ps = L.plants.slice().sort(function(a, b) { return b.t - a.t || (a.n < b.n ? -1 : 1); });
-      var es = L.emps.slice().sort(function(a, b) { return b.t - a.t || (a.n < b.n ? -1 : 1); });
-      var lp = ps.filter(function(p) { return p.r == 1; });
-      var st = es.filter(function(p) { return p.r == 1; });
-
-      var h = '<div class="lbwrap"><h1 class="page-title">Live Leaderboard</h1><p class="lead">Marks earned by plants and employees during World Quality Month. Last updated ' + escHtml(L.upd) + '.</p>';
-      h += '<div class="trial" role="note"><div><b>This is for trial purposes only</b><span>The names and numbers on this page are sample data. They are not real results.</span></div></div>';
-      h += '<div class="grid">';
-      [[L.total, "Total marks awarded"],[lp.map(function(p) { return p.n; }).join(", ") + " (" + lp[0].t + " pts" + (lp.length > 1 ? ", tied" : "") + ")", "Leading plant"],[st.map(nm).join(", ") + " (" + st[0].t + " pts)", "Star performer"],[L.ideas, "Ideas submitted (poka-yoke / near escape)"],[L.entries + " entries", "Total participations"]].forEach(function(k) {
-        h += '<div class="tile kpi"><h3>' + escHtml(k[0]) + '</h3><p>' + escHtml(k[1]) + '</p></div>';
-      });
-
-      h += '</div><h2 class="lbh">Plant and area performance</h2><div class="tw"><table class="tb"><tr><th>Rank</th><th>Plant / Area</th><th>Total marks</th><th class="n">Quiz (5)</th><th class="n">Video (5)</th><th class="n">Learning (20)</th><th class="n">Error proof (10)</th><th class="n">Near escape (10)</th><th class="n">Entries</th><th class="n">Unique staff</th></tr>';
-      ps.forEach(function(p) {
-        h += '<tr><td>' + p.r + '</td><td>' + escHtml(p.n) + '</td><td><span class="bar"><i style="width:' + Math.round(p.t / mx * 100) + '%"></i></span><b>' + p.t + '</b></td><td class="n">' + p.q + '</td><td class="n">' + p.v + '</td><td class="n">' + p.l + '</td><td class="n">' + p.e + '</td><td class="n">' + p.x + '</td><td class="n">' + p.en + '</td><td class="n">' + p.u + '</td></tr>';
-      });
-
-      h += '</table></div><h2 class="lbh">Top individual performers</h2><div class="tw"><table class="tb"><tr><th>Rank</th><th>Emp #</th><th>Name</th><th>Plant</th><th class="n">Activities</th><th class="n">Total marks</th></tr>';
-      es.forEach(function(p) {
-        h += '<tr><td>' + p.r + '</td><td>' + escHtml(p.id) + '</td><td>' + escHtml(p.n) + '</td><td>' + escHtml(p.p) + '</td><td class="n">' + p.a + '</td><td class="n"><b>' + p.t + '</b></td></tr>';
-      });
-
-      var sm = Math.max.apply(null, L.shifts.map(function(s) { return s.t; }));
-      h += '</table></div><h2 class="lbh">Shift-wise comparison</h2><div class="sh">';
-      L.shifts.forEach(function(s) {
-        h += '<div class="tile kpi"><h3>' + s.t + '</h3><p>' + escHtml(s.n) + ', ' + s.en + ' entries</p><p><span class="bar" style="width:100%;margin:8px 0 0"><i style="width:' + Math.round(s.t / sm * 100) + '%"></i></span></p></div>';
-      });
-      return h + '</div><p class="lbn">Ties share the same rank.</p></div>';
-    }
-
     var COURSES = [
       ["Data Strategy", "https://365datascience.com/courses/data-strategy/", "365 Data Science. With Bernard Marr: how to align business and data strategy. About 6 hours."],
       ["Data Literacy", "https://365datascience.com/courses/data-literacy/", "365 Data Science. Build the skills to read, understand and use data."],
       ["Statistics", "https://365datascience.com/courses/statistics/", "365 Data Science. Core statistics for working with data."],
       ["Introduction to Python", "https://365datascience.com/courses/introduction-to-python/", "365 Data Science. A beginner-friendly start to Python."],
-      ["Six Sigma Yellow Belt", "https://www.6sigmastudy.com/certification/six_sigma_yellow_belt", "6sigmastudy. Free online course and exam. Pass the 40-question exam to earn the Yellow Belt certification."]
+      ["Six Sigma Yellow Belt", "https://www.6sigmastudy.com/certification/six_sigma_yellow_belt", "6sigmastudy. Free online course and exam."]
     ];
 
     function learning() {
       var open = new Date() < Date.UTC(2026, 10, 20, 15, 0, 0);
-      return '<h1 class="page-title">Learning &amp; Development</h1><p class="lead">Keep learning during World Quality Month.</p><section class="note"><h2>' + (open ? 'Learn for free on 365 Data Science' : 'The free access period has ended') + '</h2>' + (open ? '<p>All courses on 365 Data Science are free until <b>20 November 2026</b> (3:00 pm UTC, 8:30 pm IST). Log in or sign up and learn for free.</p><p><b>Share your course completion certificate with us to win exciting prizes!</b></p><p><a class="go" href="https://365datascience.com/trending/365-data-science-free-courses/" target="_blank" rel="noopener">Go to the free courses</a></p>' : '<p>The free access on 365 Data Science ended on 20 November 2026.</p>') + '</section><h2 class="sub">Top five courses strongly recommended by us</h2><div class="grid">' + COURSES.map(function(c) {
+      return '<h1 class="page-title">Learning &amp; Development</h1><p class="lead">Keep learning during World Quality Month.</p><section class="note"><h2>' + (open ? 'Learn for free on 365 Data Science' : '365 Data Science courses') + '</h2><p>Free access is available to eligible employees through 20 November 2026.</p><a class="go" href="https://365datascience.com/" target="_blank" rel="noopener">Visit 365 Data Science</a></section><h2 class="sub">Featured courses</h2><div class="grid">' + COURSES.map(function(c) {
         return '<a class="tile" href="' + c[1] + '" target="_blank" rel="noopener"><h3>' + c[0] + '</h3><p>' + c[2] + '</p></a>';
       }).join("") + '</div>';
     }
@@ -568,7 +471,7 @@
       document.getElementById("nav").innerHTML = TABS.map(function(t) {
         return '<a href="#' + t[0] + '"' + (t[0] == k ? ' class="on" aria-current="page"' : '') + '>' + t[1] + '</a>';
       }).join("");
-      document.getElementById("app").innerHTML = k == "home" ? home() : k == "history" ? history() : k == "bookshelf" ? bookshelf() : k == "leaderboard" ? leaderboard() : k == "learning" ? learning() : soon(k);
+      document.getElementById("app").innerHTML = k == "home" ? home() : k == "history" ? history() : k == "bookshelf" ? bookshelf() : k == "learning" ? learning() : soon(k);
       window.scrollTo(0, 0);
     }
 
